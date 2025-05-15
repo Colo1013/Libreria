@@ -4,6 +4,7 @@ public class Libro {
     // Campi obbligatori in fase di costruzione (aggiunto titolo)
     private final String titolo;
     private final String autore;
+    private String isbn;
 
     // Campi modificabili
     private StatoLettura statoLettura;
