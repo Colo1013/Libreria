@@ -1,0 +1,16 @@
+main\java\Strategy\OrdinamentoIsbn.class
+main\java\Strategy\FiltroValutazione.class
+main\java\Strategy\FiltroStrategy.class
+main\java\Strategy\FiltroComposto.class
+main\java\Strategy\FiltroGenere.class
+main\java\Strategy\FiltroTitolo.class
+main\java\Main.class
+main\java\Strategy\OrdinamentoStrategy.class
+main\java\model\Genere.class
+main\java\model\Libro.class
+main\java\Strategy\FiltroLettura.class
+main\java\model\StatoLettura.class
+main\java\Strategy\FiltroAutore.class
+main\java\Strategy\OrdinamentoTitolo.class
+main\java\storage\StorageStrategy.class
+main\java\service\GestoreLibri.class

@@ -1,0 +1,16 @@
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Main.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\model\Genere.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\model\Libro.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\model\StatoLettura.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\service\GestoreLibri.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\storage\StorageStrategy.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\FiltroAutore.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\FiltroComposto.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\FiltroGenere.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\FiltroLettura.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\FiltroStrategy.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\FiltroTitolo.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\FiltroValutazione.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\OrdinamentoIsbn.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\OrdinamentoStrategy.java
+C:\Users\Ale\Documents\Uni\Libreria\src\main\java\Strategy\OrdinamentoTitolo.java
