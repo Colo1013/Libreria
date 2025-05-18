@@ -1,11 +1,12 @@
-package main.java.storage;
+package storage;
 
-import main.java.model.Libro;
+import model.Libro;
 
-import java.util.List;
+
+import java.util.Map;
 
 public interface StorageStrategy {
-    void salva(List<Libro> libreria, String percorso);
+    void salva(Map<String,Libro> libreria, String percorso);
 
-    List<Libro> carica(String percorso);
+    Map<String, Libro> carica(String percorso);
 }

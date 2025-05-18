@@ -1,7 +1,7 @@
-package main.java.Strategy;
+package Strategy;
 
-import main.java.model.Libro;
-import main.java.model.StatoLettura;
+import model.Libro;
+import model.StatoLettura;
 
 import java.util.List;
 import java.util.stream.Collectors;

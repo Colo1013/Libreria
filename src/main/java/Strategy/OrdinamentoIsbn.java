@@ -1,6 +1,6 @@
-package main.java.Strategy;
+package Strategy;
 
-import main.java.model.Libro;
+import model.Libro;
 
 import java.util.Comparator;
 import java.util.List;

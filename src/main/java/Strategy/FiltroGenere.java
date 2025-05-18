@@ -1,7 +1,7 @@
-package main.java.Strategy;
+package Strategy;
 
-import main.java.model.Genere;
-import main.java.model.Libro;
+import model.Genere;
+import model.Libro;
 
 import java.util.List;
 import java.util.stream.Collectors;

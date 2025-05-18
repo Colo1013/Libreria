@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 public enum StatoLettura {
     DA_LEGGERE, IN_LETTURA, LETTO

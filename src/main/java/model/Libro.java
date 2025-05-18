@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 public class Libro {
     // Campi obbligatori in fase di costruzione (aggiunto titolo)

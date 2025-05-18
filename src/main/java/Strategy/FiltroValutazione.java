@@ -1,6 +1,6 @@
-package main.java.Strategy;
+package Strategy;
 
-import main.java.model.Libro;
+import model.Libro;
 
 import java.util.List;
 import java.util.stream.Collectors;

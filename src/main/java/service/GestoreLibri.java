@@ -1,56 +1,78 @@
-package main.java.service;
+package service;
 
-import main.java.Strategy.FiltroStrategy;
-import main.java.Strategy.OrdinamentoStrategy;
-import main.java.model.Libro;
-import main.java.storage.StorageStrategy;
+import Strategy.FiltroStrategy;
+import Strategy.OrdinamentoStrategy;
+import model.Libro;
+import storage.StorageStrategy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GestoreLibri {
-    private List<Libro> libreria;
+    private static GestoreLibri instance;
+    private final Map<String, Libro> libreria = new HashMap<>();
+    private List<Libro> listaLibri = new ArrayList<>();
+    private boolean listAggiornata = false;
     private OrdinamentoStrategy ordinamento;
     private FiltroStrategy filtro;
 
-    public GestoreLibri() {
-        this.libreria = new ArrayList<>();
+    private GestoreLibri() {}
+
+    public static GestoreLibri getInstance() {
+        if (instance == null) {
+            instance = new GestoreLibri();
+        }
+        return instance;
     }
 
+
     public void setOrdinamento(OrdinamentoStrategy ordinamento) {
-        this.ordinamento = Objects.requireNonNull(ordinamento,
-                "Strategia di ordinamento non può essere null");
+        this.ordinamento = Objects.requireNonNull(ordinamento);
     }
 
     public void setFiltro(FiltroStrategy filtro) {
-        this.filtro = Objects.requireNonNull(filtro,
-                "Strategia di filtro non può essere null");
+        this.filtro = Objects.requireNonNull(filtro);
+    }
+
+
+    private void aggiornaListaSeNecessario() {
+        if (!listAggiornata) {
+            listaLibri = new ArrayList<>(libreria.values());
+            listAggiornata = true;
+        }
     }
 
     public List<Libro> getLibreria() {
-        return Collections.unmodifiableList(libreria);
+        aggiornaListaSeNecessario();
+        return Collections.unmodifiableList(listaLibri);
     }
+
 
     public void aggiungiLibro(Libro libro) {
-        boolean presente = libreria.stream()
-                .anyMatch(l -> l.getIsbn().equals(libro.getIsbn()));
-
-        if (presente) {
-            throw new IllegalArgumentException("ISBN già esistente: " + libro.getIsbn());
+        String isbn = libro.getIsbn();
+        if (libreria.containsKey(isbn)) {
+            throw new IllegalArgumentException("ISBN già esistente: " + isbn);
         }
-        libreria.add(libro);
+        libreria.put(isbn, libro);
+        listAggiornata = false;
     }
 
-    public boolean rimuoviLibro(String isbn) {
-        return libreria.removeIf(libro -> libro.getIsbn().equals(isbn));
+    public  boolean rimuoviLibro(String isbn) {
+        boolean rimosso = libreria.remove(isbn) != null;
+        if (rimosso) {
+            listAggiornata = false;
+        }
+        return rimosso;
     }
+
 
     public List<Libro> cercaTitolo(String titolo) {
-        return libreria.stream()
-                .filter(n -> n.getTitolo().equalsIgnoreCase(titolo))
+        if (titolo == null || titolo.isBlank()) {
+            return Collections.emptyList();
+        }
+        aggiornaListaSeNecessario();
+        return listaLibri.stream()
+                .filter(l -> titolo.equalsIgnoreCase(l.getTitolo()))
                 .collect(Collectors.toList());
     }
 
@@ -58,23 +80,28 @@ public class GestoreLibri {
         if (ordinamento == null) {
             throw new IllegalStateException("Strategia di ordinamento non impostata");
         }
-        List<Libro> out = new ArrayList<>(libreria);
-        ordinamento.ordina(out);
-        return out;
+        aggiornaListaSeNecessario();
+        List<Libro> copia = new ArrayList<>(listaLibri);
+        ordinamento.ordina(copia);
+        return copia;
     }
 
     public List<Libro> filtra() {
         if (filtro == null) {
             throw new IllegalStateException("Strategia di filtro non impostata");
         }
-        return filtro.filtra(libreria);
+        aggiornaListaSeNecessario();
+        return filtro.filtra(listaLibri);
     }
+
 
     public void salvaSuFile(String percorso, StorageStrategy storage) {
         storage.salva(libreria, percorso);
     }
 
     public void caricaDaFile(String percorso, StorageStrategy storage) {
-        this.libreria = storage.carica(percorso);
+        this.libreria.clear();
+        this.libreria.putAll(storage.carica(percorso));
+        this.listAggiornata = false;
     }
 }
