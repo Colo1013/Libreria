@@ -25,7 +25,6 @@ public class GestoreLibri {
         return instance;
     }
 
-
     public void setOrdinamento(OrdinamentoStrategy ordinamento) {
         this.ordinamento = Objects.requireNonNull(ordinamento);
     }
